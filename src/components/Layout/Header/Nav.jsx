@@ -4,7 +4,7 @@ import logo from "../../../assets/logo.png"
 import {NavLink} from "react-router-dom";
 
 const Nav = () => {
-    const activeClassName = classes.active;
+
     return (
         <nav>
             <ul className={classes.menu}>
