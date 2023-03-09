@@ -9,16 +9,16 @@ const CarList = () => {
     const [cars, setCars] = useState([]);
 
     useEffect(() => {
-        const fetch = () => {
-            Http.GET(Endpoints.GET_ALL_CAR, null, {})
+        const fetch = async () => {
+            await Http.GET(Endpoints.GET_ALL_CAR, null, {})
                 .then((response) => {
                     setCars(response.data);
                 }).catch(err => {
-                console.log("fetching error" +err);
-            });
+                    console.log("fetching error" +err);
+                });
         }
         fetch();
-    }, [fetch])
+    }, [fetch,cars])
 
 
     return (
