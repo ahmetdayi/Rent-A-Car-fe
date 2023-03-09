@@ -73,7 +73,8 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 /*#endregion */
-
+/*#region STARTER*/
+/*
 .modals{
     justify-content: space-around;
     display: flex;
@@ -85,6 +86,7 @@ p, h1, h2, h3, h4, h5, h6 {
 section{
     height: 100px;
     max-width: 33%;
+
 }
 .modal {
     display: inline-block;
@@ -100,7 +102,6 @@ section{
 }
 
 .modal_img {
-    margin: 15px 15px;
     object-fit: cover;
     background-size: cover;
 }
@@ -146,4 +147,76 @@ section{
 }
 .modal_info p:last-child{
     padding-bottom: 15px;
+}
+*/
+/*#endregion STARTER*/
+.modals {
+    max-width: 25rem;
+    min-width: 25rem;
+    height: 27rem;
+    background-color: #3f3f3f;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    border-bottom: 3px solid red;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    position: relative;
+}
+
+.models_button {
+    color: white;
+    font-family: Poppins, sans-serif;
+    font-weight: bolder;
+    padding: 15px;
+    border: 3px solid red;
+    border-radius: 15px;
+    position: absolute;
+    bottom: 0;
+    left: 40%;
+    z-index: 1;
+}
+
+.models_button:hover {
+    border: none;
+    background: red;
+}
+
+.modal p {
+    padding: 3px;
+}
+
+.modal {
+    max-width: 100%;
+    min-width: 100%;
+    height: 100%;
+    border-top: 3px solid red;
+    position: relative;
+
+}
+
+.modal_img {
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+
+
+}
+
+.modal_img img {
+    object-fit: contain;
+
+}
+
+.content {
+    color: white;
+    font-family: Poppins, serif;
+    font-weight: bolder;
+    display: flex;
+    flex-direction: column;
+    padding-left: 15px;
+    background-color: #1f1f1f;
+    position: absolute;
+    top: 0;
 }

@@ -1,10 +1,11 @@
 import React from 'react';
-import Car from "../Layout/Car-List/Car/Car";
+
+import CarList from "../Layout/Car-List/CarList";
 
 const Cars = () => {
     return (
         <div>
-            <Car/>
+            <CarList/>
         </div>
     );
 };

@@ -1,5 +1,5 @@
 import './App.css';
-import React, {Fragment, useEffect} from "react";
+import React, {Fragment, useEffect, useState} from "react";
 import {Route, Routes, useLocation} from "react-router-dom";
 import Home from "./components/Pages/Home";
 import Cars from "./components/Pages/Cars";
@@ -11,15 +11,13 @@ import Nav from "./components/Layout/Header/Nav";
 
 
 function App() {
-let location = useLocation();
-let isHome = true;
-useEffect(()=>{
-    const control = async ()=>{
-        isHome=  await (location.pathname==="/" || location.pathname==="/home");
-    }
-    control();
+    const[isHome,setIsHome] = useState(true);
+    let location = useLocation();
 
-},[isHome])
+    useEffect(() => {
+        let isHome = location.pathname==="/" || location.pathname==="/home";
+        setIsHome(isHome);
+    }, [location])
 
     return (
         <Fragment>

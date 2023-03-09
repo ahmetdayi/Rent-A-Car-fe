@@ -1,0 +1,9 @@
+
+.modal_section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-color: rgba(77, 90, 119, 0.86);
+    min-height: 79.7vh;
+}
+
