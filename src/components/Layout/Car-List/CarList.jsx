@@ -12,7 +12,6 @@ const CarList = () => {
         const fetch = () => {
             Http.GET(Endpoints.GET_ALL_CAR, null, {})
                 .then((response) => {
-                    console.log(response.data);
                     setCars(response.data);
                 }).catch(err => {
                 console.log("fetching error" +err);

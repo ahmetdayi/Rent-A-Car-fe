@@ -4,9 +4,7 @@ import classes from "./Car.module.css"
 
 const Car = (props) => {
 
-    useEffect(() => {
-        console.log(props.image[0].url)
-    })
+
     return (
         <div className={classes.modals}>
             <div className={classes.modal}>
