@@ -25,9 +25,6 @@ const Nav = () => {
                     className={`${url === "/about"  ? classes.active : ""}`} to="/about">ABOUT</NavLink>
                 </li>
                 <li className={classes["menu-item"]}><NavLink
-                    className={`${url === "/contact"  ? classes.active : ""}`}
-                    to="/contact">CONTACT</NavLink></li>
-                <li className={classes["menu-item"]}><NavLink
                     className={`${url === "/login"? classes.active : ""}`} to="/login">LOGIN</NavLink>
                 </li>
                 <li className={classes["menu-item"]}><NavLink

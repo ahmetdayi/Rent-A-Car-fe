@@ -74,73 +74,26 @@ p, h1, h2, h3, h4, h5, h6 {
 
 /*#endregion */
 
-.modals {
-    max-width: 25rem;
-    min-width: 25rem;
-    height: 27rem;
-    background-color: #3f3f3f;
-    display: flex;
-    flex-direction: column;
-    align-items: end;
-    border-bottom: 3px solid red;
-    margin-bottom: 15px;
-    margin-top: 15px;
-    position: relative;
-}
-
-.models_button {
-    color: white;
-    font-family: Poppins, sans-serif;
-    font-weight: bolder;
-    padding: 15px;
-    border: 3px solid red;
-    border-radius: 15px;
-    position: absolute;
-    bottom: 0;
-    left: 40%;
-    z-index: 1;
-}
-
-.models_button:hover {
-    border: none;
-    background: red;
-}
-
-.modal p {
-    padding: 3px;
-}
-
-.modal {
-    max-width: 100%;
-    min-width: 100%;
-    height: 100%;
-    border-top: 3px solid red;
-    position: relative;
-
-}
-
-.modal_img {
-    height: 100%;
-    overflow: hidden;
-    position: relative;
-    z-index: 0;
-
-
-}
-
-.modal_img img {
-    object-fit: contain;
-
-}
-
-.content {
-    color: white;
-    font-family: Poppins, serif;
-    font-weight: bolder;
-    display: flex;
-    flex-direction: column;
-    padding-left: 15px;
+.container{
     background-color: #1f1f1f;
-    position: absolute;
-    top: 0;
+    max-width: 100%;
+    min-width: 98%;
+    max-height: 50vh;
+    min-height: 50vh;
+    overflow: hidden;
+    display: flex;
+    margin: 1.1rem;
+
+}
+.main_img{
+    width: 70%;
+}
+.content{
+    color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    font-weight: bolder;
+    font-family: "Yu Gothic UI Light",sans-serif;
+    letter-spacing: 3px;
 }
