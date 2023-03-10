@@ -1,34 +1,90 @@
-import React, {useState} from 'react';
+import React, {Fragment, useState} from 'react';
 import classes from "./LoginComponent.module.css"
 import {ErrorMessage, Field, Form, Formik} from "formik";
+import {Link, useNavigate} from "react-router-dom";
+import Http from "../../Utility/Http";
+import Endpoints from "../../Utility/Endpoints";
+import validationSchema from "../../Services/LoginValid";
 
 const LoginComponent = () => {
-    const {isSubmitting, setSubmitting} = useState(false);
-    const validate = values => {
-        const errors = {};
-        if (!values.email) {
-            errors.email = 'Required';
-        } else if (
-            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-        ) {
-            errors.email = 'Invalid email address';
-        }
-        return errors;
-    };
 
-    const onSubmit = (values, {setSubmitting}) => {
-        setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
+    const [error,setError] = useState(false);
+    let navigateFunction = useNavigate();
+
+    const onSubmit = () =>
+
+        async (values, {setSubmitting}) => {
+            const data = {
+                email: values.email,
+                password: values.password
+            }
+
+            try{
+                const response= await Http.POST(Endpoints.LOG_IN, data, {})
+                // navigateFunction("/home");
+                console.log(response.data.jwtToken)
+                setError(false);
+            }catch (err){
+                setError(true);
+                console.log(err);
+            }
+
             setSubmitting(false);
-        }, 400);
-    };
+        }
+    ;
 
     return (
-        <div className={classes.container}>
-            <h1>LOGIN</h1>
-            //TODO formik https://formik.org/docs/tutorial
-            <div className={classes.direct_signup}></div>
-        </div>
+            <Formik
+                initialValues={{ email: '', password: ""}}
+                validationSchema={validationSchema}
+                onSubmit={onSubmit()}
+                enableReinitialize={true}
+            >
+                {({
+                      values,
+                      errors,
+                      isSubmitting,
+                      touched,
+                      handleSubmit,
+                      handleChange
+                  }
+                ) => (
+                    <Form onSubmit={handleSubmit} className={classes.form}>
+                        <label className={classes.label} htmlFor="email">Email Address</label>
+                        <input
+                            className={!touched.email
+                            || !errors.email ? `${classes.input}` : `${classes.error_input}`} id="email" name="email"
+                            onChange={handleChange}
+                            value={values.email}
+                            type="email"
+                        />
+                        {
+                            touched.email && errors.email && <p className={classes.error_message}>{errors.email}</p>
+                        }
+
+                        <label className={classes.label} htmlFor="password">Password</label>
+                        <input
+                            className={!touched.password
+                            || !errors.password ? `${classes.input}` : `${classes.error_input}`} id="password"
+                            name="password"
+                            onChange={handleChange}
+                            value={values.password}
+                            type="password"
+                        />
+                        {
+                            touched.password && errors.password &&
+                            <p className={classes.error_message}>{errors.password}</p>
+                        }
+
+                        <button className={classes.button} type="submit">Submit</button>
+                        {error? <p className={classes.error_fetch}>Please Check E mail or Password.</p> : null}
+
+                        <p className={classes.signup}>If you don't have account. Please <Link to="/signup">Sign up</Link></p>
+                    </Form>
+
+                )}
+
+            </Formik>
     );
 };
 

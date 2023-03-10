@@ -4,17 +4,14 @@ import validationSchema from "../../Services/SignUpValid";
 import Http from "../../Utility/Http";
 import Endpoints from "../../Utility/Endpoints";
 import classes from "./SignUpComponent.module.css"
-import {Navigate, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 const SignUpComponent = () => {
 
     let navigateFunction = useNavigate();
-    const [redirect, setRedirect] = useState(false);
-
 
     const onSubmit = () =>
         async (values, {setSubmitting}) => {
-            console.log(values)
             const data = {
                 firstName: values.firstName,
                 lastName: values.lastName,
@@ -31,7 +28,6 @@ const SignUpComponent = () => {
             }
 
             setSubmitting(false);
-            setRedirect(true);
         }
     ;
 
@@ -122,7 +118,6 @@ const SignUpComponent = () => {
                     }
 
                     <button className={classes.button} type="submit">Submit</button>
-
 
                 </Form>
             )}
