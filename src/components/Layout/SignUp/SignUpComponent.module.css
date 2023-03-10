@@ -49,9 +49,12 @@
     color: white;
     background-color: red;
     border: none;
+    transition:all ease .5s ;
 }
 .button:hover{
+    transition:all ease .5s ;
     border: 2px solid red;
+    border-radius: 2px 20px 2px 20px;
     background-color: white;
     color: red;
     font-weight: bolder;
