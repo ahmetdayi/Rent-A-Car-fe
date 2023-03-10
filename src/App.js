@@ -7,6 +7,7 @@ import About from "./components/Pages/About";
 import Login from "./components/Pages/Login";
 import Profile from "./components/Pages/Profile";
 import Nav from "./components/Layout/Header/Nav";
+import SignUp from "./components/Pages/SignUp";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
                 <Route path="/cars" element={<Cars/>}/>
                 <Route path="/about" element={<About/>}/>
                 <Route path="/login" element={<Login/>}/>
+                <Route path="/signup" element={<SignUp/>}/>
                 <Route path="/profile" element={<Profile/>}/>
             </Routes>
         </Fragment>
