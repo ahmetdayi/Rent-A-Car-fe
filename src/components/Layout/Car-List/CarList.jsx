@@ -14,11 +14,11 @@ const CarList = () => {
                 .then((response) => {
                     setCars(response.data);
                 }).catch(err => {
-                    console.log("fetching error" +err);
+                    console.log("fetching error " +err);
                 });
         }
         fetch();
-    }, [fetch,cars])
+    }, [])
 
 
     return (
@@ -27,6 +27,7 @@ const CarList = () => {
                 <Car
                     key={index}
                     index={index}
+                    carId={car.carId}
                     image={car.image}
                     brand={car.brand}
                     carName={car.carName}

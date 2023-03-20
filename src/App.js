@@ -8,16 +8,14 @@ import Login from "./components/Pages/Login";
 import Profile from "./components/Pages/Profile";
 import Nav from "./components/Layout/Header/Nav";
 import SignUp from "./components/Pages/SignUp";
-import {useDispatch} from "react-redux";
-import {loginActions} from "./components/Store/LoginSlice";
 import Logout from "./components/Pages/Logout";
+import CarItem from "./components/Pages/CarItem";
 
 
 function App() {
     const[isHome,setIsHome] = useState(true);
     let location = useLocation();
-    const dispatch =useDispatch();
-    const navigate = useNavigate();
+
     useEffect(() => {
         let isHome = location.pathname==="/" || location.pathname==="/home";
         setIsHome(isHome);
@@ -30,6 +28,7 @@ function App() {
                 <Route path="/" element={<Home/>}/>
                 <Route path="/home" element={<Home/>}/>
                 <Route path="/cars" element={<Cars/>}/>
+                <Route path="/car/:carId" element={<CarItem/>}/>
                 <Route path="/about" element={<About/>}/>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/logout" element={<Logout/>}/>

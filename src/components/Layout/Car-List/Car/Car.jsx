@@ -1,9 +1,10 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import classes from "./Car.module.css"
+
+import {Link} from "react-router-dom";
 
 
 const Car = (props) => {
-
 
     return (
         <div className={classes.modals}>
@@ -19,7 +20,7 @@ const Car = (props) => {
                     <p>Product Year : {`${props.productYear ? props.productYear : ""}`}</p>
                 </div>
             </div>
-            <a className={classes.models_button} href="#">RENTAL</a>
+            <Link to={`/car/${props.carId}`} className={classes.models_button} >RENTAL</Link>
         </div>
     );
 };

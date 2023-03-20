@@ -8,7 +8,7 @@ const Nav = () => {
     const [url, setUrl] = useState("");
     const location = useLocation();
     let loginCtx = useSelector((state) => state.login);
-    console.log(loginCtx);
+
     const profile = (<li className={classes["menu-item"]}><NavLink
         className={`${url === "/profile" ? classes.active : ""}`}
         to="/profile">{loginCtx.isLoggedIn ? "PROFILE" : null}</NavLink></li>);
