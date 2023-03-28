@@ -1,0 +1,43 @@
+.background{
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    height: 79.5vh;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+
+}
+.info{
+    color: #bd852e;
+    background-color: rgba(0, 0, 0, 0.56);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 30%;
+    font-weight: bolder;
+    font-size: 2rem;
+
+}
+.image {
+    overflow: hidden;
+
+}
+
+.models_button {
+    color: white;
+    font-family: Poppins, sans-serif;
+    font-weight: bolder;
+    padding: 15px;
+    border: 3px solid red;
+    border-radius: 15px;
+    margin-top: 3rem;
+    bottom: 0;
+
+}
+
+.models_button:hover {
+    border: none;
+    background: red;
+}
