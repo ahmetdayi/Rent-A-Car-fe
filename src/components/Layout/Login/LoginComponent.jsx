@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import classes from "./LoginComponent.module.css"
 import {Form, Formik} from "formik";
 import {Link, useNavigate} from "react-router-dom";
@@ -23,9 +23,10 @@ const LoginComponent = () => {
             }
 
             try {
-                const response = await Http.POST(Endpoints.LOG_IN, data, {})
+                const response = await Http.POST(Endpoints.LOG_IN, data, {});
+                console.log(response);
+                dispatch(loginActions.login(`Bearer ${response.data.jwtToken}`),{customerId:response.data.customerId});
 
-                dispatch(loginActions.login(`Bearer ${response.data.jwtToken}`));
                 setError(false);
                 navigateFunction("/home");
             } catch (err) {
@@ -36,6 +37,8 @@ const LoginComponent = () => {
             setSubmitting(false);
         }
     ;
+
+
 
     return (
         <Formik

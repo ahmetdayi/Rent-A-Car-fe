@@ -1,5 +1,5 @@
 import React from 'react';
-import CarInfo from "../Layout/Car-Item/Car-Item"
+import CarInfo from "../Layout/CarInfo/CarInfo"
 const CarItem = () => {
     return (
         <div>

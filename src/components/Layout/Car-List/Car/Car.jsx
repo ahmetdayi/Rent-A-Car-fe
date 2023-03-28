@@ -20,7 +20,7 @@ const Car = (props) => {
                     <p>Product Year : {`${props.productYear ? props.productYear : ""}`}</p>
                 </div>
             </div>
-            <Link to={`/car/${props.carId}`} className={classes.models_button} >RENTAL</Link>
+            <Link to={`/car/${props.carId}`} className={classes.models_button} >DETAILS</Link>
         </div>
     );
 };

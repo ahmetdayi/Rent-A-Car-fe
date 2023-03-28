@@ -5,7 +5,7 @@ import Http from "../../Utility/Http";
 import Endpoints from "../../Utility/Endpoints";
 import car from "../../Layout/Car-List/Car/Car";
 import {Link} from "react-router-dom";
-import classes from "./Car-Item.module.css"
+import classes from "./CarInfo.module.css"
 
 
 const CarInfo = () => {
@@ -19,7 +19,6 @@ const CarInfo = () => {
             await Http.GET(Endpoints.GET_CAR_BY_ID + `?carId=` + carId)
                 .then((response) => {
                     setCarInfo(response.data);
-                    console.log(carInfo)
                 }).catch(err => {
                     console.log("fetching error" + err);
                 });
@@ -29,9 +28,7 @@ const CarInfo = () => {
             fetch();
         }
     }, [])
-    useEffect(() => {
-        console.log(carInfo)
-    }, [carInfo])
+
     return (
 
         <div style={{backgroundImage: 'url(' + carInfo?.image?.map((image) => image.url) + ')' }}
@@ -42,7 +39,7 @@ const CarInfo = () => {
                 <div className={classes.dailyPrice}>DAILY PRICE: {carInfo?.dailyPrice}</div>
                 <div className={classes.productYear}>PRODUCT YEAR: {carInfo?.productYear}</div>
                 <div className={classes.colors}>COLORS: {carInfo?.carColors?.map((color) => color.colorName)}</div>
-                <Link className={classes.models_button} >RENTAL</Link>
+                <Link to={`/rental/${carInfo?.carId}`} className={classes.models_button} >RENTAL</Link>
             </div>
             <div className={classes.image}><img src={carInfo?.image?.map((image) => image.url)} alt=""/></div>
         </div>

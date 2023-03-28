@@ -10,6 +10,7 @@ import Nav from "./components/Layout/Header/Nav";
 import SignUp from "./components/Pages/SignUp";
 import Logout from "./components/Pages/Logout";
 import CarItem from "./components/Pages/CarItem";
+import Rental from "./components/Layout/Rental/Rental";
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
                 <Route path="/home" element={<Home/>}/>
                 <Route path="/cars" element={<Cars/>}/>
                 <Route path="/car/:carId" element={<CarItem/>}/>
+                <Route path="/rental/:carId" element={<Rental/>}/>
                 <Route path="/about" element={<About/>}/>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/logout" element={<Logout/>}/>

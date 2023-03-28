@@ -4,7 +4,8 @@ export const LoginSlice =createSlice({
     name: "token",
     initialState: {
         token : null,
-        isLoggedIn:false
+        isLoggedIn:false,
+
     },
     reducers:{
         login(state, action) {
@@ -14,7 +15,7 @@ export const LoginSlice =createSlice({
         logout (state) {
             state.token=null;
             state.isLoggedIn=false;
-        }
+        },
     },
 
 });
