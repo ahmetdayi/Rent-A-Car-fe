@@ -8,28 +8,29 @@ import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 
 const UpdateComponent = () => {
-    const [error,setError] = useState(false);
-    const loginCtx = useSelector((state)=>state.login);
+    const [error, setError] = useState(false);
+    const loginCtx = useSelector((state) => state.login);
     let navigation = useNavigate();
     const onSubmit = () =>
 
-        async (values, {setSubmitting}) =>{
+        async (values, {setSubmitting}) => {
             const data = {
-                customerId:loginCtx.customerId,
+                customerId: loginCtx.customerId,
                 firstName: values.firstName,
                 lastName: values.lastName,
-                password:values.password,
-                matchingPassword:values.matchingPassword
+                password: values.password,
+                matchingPassword: values.matchingPassword
             }
-            try{
-                const response =await Http.PUT(Endpoints.UPDATE_CUSTOMER,data);
+            try {
+                const response = await Http.PUT(Endpoints.UPDATE_CUSTOMER, data);
                 console.log(response.data);
                 setError(false);
                 navigation("/profile")
-            }catch (e) {
+            } catch (e) {
                 console.log(e);
                 setError(true);
             }
+            setSubmitting(false);
 
         }
     ;
@@ -45,7 +46,7 @@ const UpdateComponent = () => {
                   handleSubmit,
                   handleChange,
                   touched
-              }) =>(
+              }) => (
 
                 <form onSubmit={handleSubmit} className={classes.form}>
                     <h1>UPDATE</h1>
@@ -60,7 +61,8 @@ const UpdateComponent = () => {
                         onChange={handleChange}
                     />
                     {
-                        !touched.firstName && errors.firstName && <p className={classes.error_message}>{errors.firstName}</p>
+                        !touched.firstName && errors.firstName &&
+                        <p className={classes.error_message}>{errors.firstName}</p>
                     }
                     <label htmlFor="lastName">Last Name</label>
                     <input
@@ -73,7 +75,8 @@ const UpdateComponent = () => {
                         onChange={handleChange}
                     />
                     {
-                        touched.lastName && errors.lastName && <p className={classes.error_message}>{errors.lastName}</p>
+                        touched.lastName && errors.lastName &&
+                        <p className={classes.error_message}>{errors.lastName}</p>
                     }
                     <label htmlFor="password">Password</label>
                     <input
@@ -86,7 +89,8 @@ const UpdateComponent = () => {
                         onChange={handleChange}
                     />
                     {
-                        !touched.password && errors.password && <p className={classes.error_message}>{errors.password}</p>
+                        !touched.password && errors.password &&
+                        <p className={classes.error_message}>{errors.password}</p>
                     }
                     <label htmlFor="matchingPassword">Matching Password</label>
                     <input
@@ -99,7 +103,8 @@ const UpdateComponent = () => {
                         onChange={handleChange}
                     />
                     {
-                        !touched.matchingPassword && errors.matchingPassword && <p className={classes.error_message}>{errors.matchingPassword}</p>
+                        !touched.matchingPassword && errors.matchingPassword &&
+                        <p className={classes.error_message}>{errors.matchingPassword}</p>
                     }
                     <button className={classes.button} type="submit">Update</button>
                     {error ? <p className={classes.error_fetch}>Please Check E mail or Password.</p> : null}
