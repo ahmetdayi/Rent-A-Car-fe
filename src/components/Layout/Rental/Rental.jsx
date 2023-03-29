@@ -5,13 +5,13 @@ import Http from "../../Utility/Http";
 import Endpoints from "../../Utility/Endpoints";
 import {Formik} from "formik";
 import validationSchema from "../../Services/RentalValid"
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {loginActions} from "../../Store/LoginSlice";
 
 const Rental = () => {
     const param = useParams();
     const carId = param.carId;
-    //customerıd gelecek
+    let loginCtx = useSelector((state) => state.login);
     const [error, setError] = useState(false);
     let navigateFunction = useNavigate();
 
@@ -20,16 +20,18 @@ const Rental = () => {
 
         async (values, {setSubmitting}) => {
             const data = {
-                returnDate: values.returnDate
+                returnDate: values.returnDate,
+                customerId: values.customerId,
+                carId: values.carId
             }
-
             try {
-                console.log(data)
+                await Http.POST(Endpoints.RENTAL, data);
                 setError(false);
 
+                navigateFunction("/profile");
             } catch (err) {
-                setError(true);
                 console.log(err);
+                setError(true);
             }
 
             setSubmitting(false);
@@ -37,8 +39,9 @@ const Rental = () => {
     ;
 
     return (
+
         <Formik
-            initialValues={{returnDate: "", customerId: "", carId: carId}}
+            initialValues={{returnDate: "", customerId: loginCtx.customerId, carId: carId}}
             validationSchema={validationSchema}
             onSubmit={onSubmit()}
             enableReinitialize={true}
@@ -52,23 +55,25 @@ const Rental = () => {
                   handleChange
 
               }) => (
-                <form action="" className={classes.form}>
+                <form onSubmit={handleSubmit} className={classes.form}>
                     <h1>RENTAL</h1>
-                    <label className={classes.label} htmlFor="returnDate">Email Address</label>
+                    <label className={classes.label} htmlFor="returnDate">Return Date</label>
                     <input
                         className={!touched.returnDate
-                        || !errors.returnDate ? `${classes.input}` : `${classes.error_input}`} id="returnDate"
+                        || !errors.returnDate ? `${classes.input}` : `${classes.error_input}`}
+                        id="returnDate"
                         name="returnDate"
                         onChange={handleChange}
                         value={values.returnDate}
-                        type="date"
+                        type="datetime-local"
                     />
                     {
-                        touched.returnDate  &&
+                        !touched.returnDate &&
                         <p className={classes.error_message}>{errors.returnDate}</p>
                     }
                     <button className={classes.button} type="submit">Submit</button>
-                    {error ? <p className={classes.error_fetch}>Please Check E mail or Password.</p> : null}
+                    {error ? <p className={classes.error_fetch}>Please check input</p> : null}
+                    {loginCtx.customerId}
                 </form>
             )}
 

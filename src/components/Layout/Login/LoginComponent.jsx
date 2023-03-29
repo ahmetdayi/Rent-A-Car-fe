@@ -25,7 +25,10 @@ const LoginComponent = () => {
             try {
                 const response = await Http.POST(Endpoints.LOG_IN, data, {});
                 console.log(response);
-                dispatch(loginActions.login(`Bearer ${response.data.jwtToken}`),{customerId:response.data.customerId});
+                dispatch(loginActions.login({
+                    token: `Bearer ${response.data.jwtToken}`,
+                    customerId: response.data.customerId
+                }));
 
                 setError(false);
                 navigateFunction("/home");
@@ -37,7 +40,6 @@ const LoginComponent = () => {
             setSubmitting(false);
         }
     ;
-
 
 
     return (
