@@ -103,4 +103,5 @@
 .models_button:hover {
     border: none;
     background: red;
+    color: white;
 }
