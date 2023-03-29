@@ -27,7 +27,6 @@ const Rental = () => {
             try {
                 await Http.POST(Endpoints.RENTAL, data);
                 setError(false);
-
                 navigateFunction("/profile");
             } catch (err) {
                 console.log(err);
