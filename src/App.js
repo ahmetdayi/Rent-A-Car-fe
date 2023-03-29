@@ -11,6 +11,7 @@ import SignUp from "./components/Pages/SignUp";
 import Logout from "./components/Pages/Logout";
 import CarItem from "./components/Pages/CarItem";
 import Rental from "./components/Layout/Rental/Rental";
+import Update from "./components/Pages/Update";
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
                 <Route path="/logout" element={<Logout/>}/>
                 <Route path="/signup" element={<SignUp/>}/>
                 <Route path="/profile" element={<Profile/>}/>
+                <Route path="/update" element={<Update/>}/>
             </Routes>
         </Fragment>
     );

@@ -3,6 +3,7 @@ import classes from "./Profile.module.css"
 import Http from "../../Utility/Http";
 import Endpoints from "../../Utility/Endpoints";
 import {useSelector} from "react-redux";
+import {Link} from "react-router-dom";
 const ProfileComponent = () => {
     const [profileInfo,setProfileInfo] = useState(null);
     let loginCtx = useSelector((state) => state.login);
@@ -22,9 +23,6 @@ const ProfileComponent = () => {
             fetch();
         }
     }, [])
-    useEffect(()=>{
-        console.log(profileInfo)
-    },[profileInfo])
 
     return (
         <Fragment>
@@ -45,27 +43,28 @@ const ProfileComponent = () => {
                     <div>
                         <p className={classes.info_item}>Email:</p>
                         <p>{profileInfo?.customer?.email}</p>
-                    </div>
+                    </div><div><Link to={"/update"} className={classes.models_button} >UPDATE</Link></div>
                 </div>
+
             </div>
             <div className={classes.container} style={{marginTop:"10px", backgroundImage: 'url(' + profileInfo?.car?.image?.map((image) => image.url) + ')'}}>
                 <h1>Rental Info</h1>
                 <div className={classes.rentals}>
                     <div className={classes.rental_item}>
                        <div className={classes.car_info}>
-                           <p className={classes.baslık}>Car :</p>
+                           <p className={classes.baslik}>Car :</p>
                            <p>{profileInfo?.car?.carName}</p>
-                           <p className={classes.baslık}>Brand :</p>
+                           <p className={classes.baslik}>Brand :</p>
                            <p>{profileInfo?.car?.brand?.brandName}</p>
-                           <p className={classes.baslık}>Product Year :</p>
+                           <p className={classes.baslik}>Product Year :</p>
                            <p>{profileInfo?.car?.productYear}</p>
-                           <p className={classes.baslık}>Colors :</p>
+                           <p className={classes.baslik}>Colors :</p>
                            <p>{profileInfo?.car?.carColors?.map((color)=>color.colorName)}</p>
                        </div>
                         <div className={classes.rental_item_info}>
-                            <p className={classes.baslık}>Rent Date :</p>
+                            <p className={classes.baslik}>Rent Date :</p>
                             <p>{profileInfo?.rentDate.replace("T"," ")}</p>
-                            <p className={classes.baslık}>Return Date :</p>
+                            <p className={classes.baslik}>Return Date :</p>
                             <p>{profileInfo?.returnDate.replace("T"," ")}</p>
                         </div>
                     </div>
