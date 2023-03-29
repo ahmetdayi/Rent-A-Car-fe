@@ -23,6 +23,7 @@ const Endpoints = {
     CREATE_CUSTOMER: source + "/customer", //!POST
     UPDATE_CUSTOMER: source + "/customer", //!PUT
     DELETE_CUSTOMER: source + "/customer/", //!DELETE customer id
+    GET_BY_ID:source + "/customer/getById?", //! GET customer id
 
     DELETE_IMG: source + "/image", //!POST
 

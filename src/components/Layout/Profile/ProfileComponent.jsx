@@ -1,26 +1,77 @@
-import React from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import classes from "./Profile.module.css"
+import Http from "../../Utility/Http";
+import Endpoints from "../../Utility/Endpoints";
+import {useSelector} from "react-redux";
 const ProfileComponent = () => {
+    const [profileInfo,setProfileInfo] = useState(null);
+    let loginCtx = useSelector((state) => state.login);
+    const customerId = loginCtx.customerId;
+
+    useEffect(() => {
+        const fetch = async () => {
+            await Http.GET(Endpoints.GET_BY_ID + "customerId=" + customerId)
+                .then((response) => {
+                    setProfileInfo(response.data);
+                }).catch(err => {
+                    console.log("fetching error" + err);
+                });
+        }
+
+        if (!profileInfo) {
+            fetch();
+        }
+    }, [])
+    useEffect(()=>{
+        console.log(profileInfo)
+    },[profileInfo])
+
     return (
-        <div className={classes.container}>
-            <h1>Profile</h1>
-            <div>
-                <img src="" alt=""/>
+        <Fragment>
+            <div className={classes.container}>
+                <h1>Profile</h1>
+                <div>
+                    <img src="" alt=""/>
+                </div>
+                <div className={classes.info}>
+                    <div>
+                        <p className={classes.info_item}>AD:</p>
+                        <p>{profileInfo?.customer?.firstName}</p>
+                    </div>
+                    <div>
+                        <p className={classes.info_item}> SOYAD:</p>
+                        <p>{profileInfo?.customer?.lastName}</p>
+                    </div>
+                    <div>
+                        <p className={classes.info_item}>Email:</p>
+                        <p>{profileInfo?.customer?.email}</p>
+                    </div>
+                </div>
             </div>
-            <div className={classes.info}>
-                <div>
-                    AD:
-                </div>
-                <div>
-                    SOYAD:
-                </div>
-                <div>
-                    Email:
+            <div className={classes.container} style={{marginTop:"10px", backgroundImage: 'url(' + profileInfo?.car?.image?.map((image) => image.url) + ')'}}>
+                <h1>Rental Info</h1>
+                <div className={classes.rentals}>
+                    <div className={classes.rental_item}>
+                       <div className={classes.car_info}>
+                           <p className={classes.baslık}>Car :</p>
+                           <p>{profileInfo?.car?.carName}</p>
+                           <p className={classes.baslık}>Brand :</p>
+                           <p>{profileInfo?.car?.brand?.brandName}</p>
+                           <p className={classes.baslık}>Product Year :</p>
+                           <p>{profileInfo?.car?.productYear}</p>
+                           <p className={classes.baslık}>Colors :</p>
+                           <p>{profileInfo?.car?.carColors?.map((color)=>color.colorName)}</p>
+                       </div>
+                        <div className={classes.rental_item_info}>
+                            <p className={classes.baslık}>Rent Date :</p>
+                            <p>{profileInfo?.rentDate.replace("T"," ")}</p>
+                            <p className={classes.baslık}>Return Date :</p>
+                            <p>{profileInfo?.returnDate.replace("T"," ")}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <hr/>
-            <div>Rental Info</div>
-        </div>
+      </Fragment>
     );
 };
 

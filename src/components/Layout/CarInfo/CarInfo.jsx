@@ -31,7 +31,7 @@ const CarInfo = () => {
 
     return (
 
-        <div style={{backgroundImage: 'url(' + carInfo?.image?.map((image) => image.url) + ')' }}
+        <div style={{backgroundImage: 'url(' + carInfo?.image?.map((image) => image.url) + ')'  }}
              className={classes.background}>
             <div className={classes.info}>
                 <div className={classes.carName}>CAR: {carInfo?.carName}</div>
@@ -43,8 +43,6 @@ const CarInfo = () => {
             </div>
             <div className={classes.image}><img src={carInfo?.image?.map((image) => image.url)} alt=""/></div>
         </div>
-
-
     )
         ;
 };
